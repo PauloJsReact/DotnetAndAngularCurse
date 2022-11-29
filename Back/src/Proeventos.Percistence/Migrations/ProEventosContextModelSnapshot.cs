@@ -2,8 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Proeventos.Percistence;
+using Proeventos.Percistence.Contextos;
 
 namespace Proeventos.Percistence.Migrations
 {

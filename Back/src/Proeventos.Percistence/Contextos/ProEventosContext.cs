@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Proeventos.Domain;
 using ProEventos.Domain;
 
-namespace Proeventos.Percistence
+namespace Proeventos.Percistence.Contextos
 {
     public class ProEventosContext : DbContext
     {

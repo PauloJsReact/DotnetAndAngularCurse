@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Proeventos.Application;
+using Proeventos.Application.Contratos;
 using Proeventos.Percistence;
+using Proeventos.Percistence.Contextos;
+using Proeventos.Percistence.Contratos;
 
 namespace ProEventos.API
 {
@@ -33,6 +30,11 @@ namespace ProEventos.API
             );
 
             services.AddControllers();
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventosPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
