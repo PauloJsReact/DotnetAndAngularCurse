@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proeventos.Percistence.Contextos;
 
 namespace Proeventos.Percistence.Migrations
@@ -21,7 +22,10 @@ namespace Proeventos.Percistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataEvento")
+                    b.Property<DateTime?>("DataEvento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagemUrl")
@@ -32,6 +36,9 @@ namespace Proeventos.Percistence.Migrations
 
                     b.Property<int>("QtdPessoas")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Tema")
                         .HasColumnType("TEXT");
@@ -56,8 +63,8 @@ namespace Proeventos.Percistence.Migrations
                     b.Property<int>("EventoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Nome")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("TEXT");
@@ -119,7 +126,7 @@ namespace Proeventos.Percistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("EventoId")
+                    b.Property<int>("EventoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
@@ -174,7 +181,9 @@ namespace Proeventos.Percistence.Migrations
                 {
                     b.HasOne("ProEventos.Domain.Evento", "Evento")
                         .WithMany("RedesSocials")
-                        .HasForeignKey("EventoId");
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Proeventos.Domain.Palestrante", "Palestrante")
                         .WithMany("RedesSocials")

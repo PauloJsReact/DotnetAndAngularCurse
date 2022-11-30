@@ -55,23 +55,23 @@ namespace ProEventos.API.Controllers
                 $"Erro ao tentar recuperar evento. Erro: {ex.Message}");
             }
         }
-
         [HttpGet("{tema}/tema")]
         public async Task<IActionResult> GetByTema(string tema)
         {
             try
             {
                 var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-                if (evento == null) return NotFound("Nenhum evento por tema não encontrado.");
+                if (evento == null) return NotFound("Eventos por tema não encontrados.");
 
                 return Ok(evento);
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                $"Erro ao tentar recuperar evento. Erro: {ex.Message}");
+                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Post(Evento model)

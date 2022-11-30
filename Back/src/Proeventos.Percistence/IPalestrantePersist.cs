@@ -53,7 +53,7 @@ namespace Proeventos.Percistence
 
         public async Task<Palestrante> GetPalestranteByIdAscync(int palestranteId, bool includeEventos = false)
         {
-            IQueryable<Palestrante> query = _context.Palestrantes.AsNoTracking()
+            IQueryable<Palestrante> query = _context.Palestrantes
            .Include(p => p.RedesSocials);
 
             if (includeEventos)
